@@ -12,4 +12,4 @@ WORKDIR /src
 COPY . /src
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-ENTRYPOINT ["python3", "-u", "/src/InfluxdbComcast.py"]
+CMD ["python3", "-u", "/src/InfluxdbComcast.py"]
