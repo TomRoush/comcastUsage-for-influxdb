@@ -7,14 +7,9 @@ RUN apt-get update && apt-get install -y \
     xvfb \
     && rm -rf /var/lib/apt/lists/*
 
-ENV LANG C.UTF-8
-ENV LC_ALL C.UTF-8
-ENV PYTHONUNBUFFERED=TRUE
+WORKDIR /src
 
-ENV APP_HOME /src
-WORKDIR /$APP_HOME
-
-COPY . $APP_HOME
+COPY . /src
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-CMD ["python3", "-u", "$APP_HOME/InfluxdbComcast.py"]
+ENTRYPOINT ["python3", "-u", "/src/InfluxdbComcast.py"]
