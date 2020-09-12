@@ -88,7 +88,7 @@ class InfluxdbComcastUsage():
 
         xfinity = XfinityUsage(username=self.config.comcast_user, password=self.config.comcast_password, debug=False)
 
-        while True:
+        while self.config.delay > 0:
 
             res = xfinity.run()
             # print("Used %d of %d %s this month." % (
