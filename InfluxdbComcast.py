@@ -88,7 +88,7 @@ class InfluxdbComcastUsage():
 
         xfinity = XfinityUsage(username=self.config.comcast_user, password=self.config.comcast_password, debug=False)
 
-        while self.config.delay > 0:
+        while True:
 
             res = xfinity.run()
             # print("Used %d of %d %s this month." % (
@@ -100,7 +100,10 @@ class InfluxdbComcastUsage():
 
             self.send_results()
 
-            time.sleep(self.config.delay)
+            if self.config.delay > 0:
+                time.sleep(self.config.delay)
+            else:
+                break
 
     def write_influx_data(self, json_data):
         """
